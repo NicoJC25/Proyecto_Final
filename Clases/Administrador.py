@@ -54,10 +54,10 @@ class admin:
 
 #el siguiente bloque es un ejemplo por favor no considerar para el codigo final
 
-'''admin1=admin(645641524152,"C.C","ricardo","Arjona","fhujdfhndj@gmail.com","ejduy485","Agregar_empleado")
+admin1=admin(645641524152,"C.C","ricardo","Arjona","fhujdfhndj@gmail.com","ejduy485","Agregar_empleado Eliminar_empleado Crear_oferta Consultar_oferta Actualizar_oferta Eliminar_oferta Crear_habitacion Actualizar_habitacion Eliminar_habitacion")
 print("el administrador: ",admin1.getNombres())
 print("que tiene: ",admin1.getTipo_doc())
 print("con el numero: ",admin1.getNum_doc())
-print("con la funcion: ",admin1.getFunciones())'''
+print("con la funcion: ",admin1.getFunciones())
 
 
