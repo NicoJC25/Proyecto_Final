@@ -55,8 +55,8 @@ class Mesero:
 
 #el siguiente bloque es un ejemplo por favor no considerar para el codigo final
 
-mesero1=Mesero(645641524152,"C.C","ricardo","Arjona","fhujdfhndj@gmail.com","ejduy485","Agregar_servicio Consultar_servicio Actualizar_servicio Eliminar_servicio")
+'''mesero1=Mesero(645641524152,"C.C","ricardo","Arjona","fhujdfhndj@gmail.com","ejduy485","Agregar_servicio Consultar_servicio Actualizar_servicio Eliminar_servicio")
 print("el mesero: ",mesero1.getNombres(),mesero1.getApellidos())
 print("que tiene: ",mesero1.getTipo_doc())
 print("con el numero: ",mesero1.getNum_doc())
-print("cuyas funciones son : ",mesero1.getFunciones())
+print("cuyas funciones son : ",mesero1.getFunciones())'''
