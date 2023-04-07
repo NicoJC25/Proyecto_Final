@@ -138,7 +138,7 @@ def deleteRecepcionista():
 #FUCION PARA CREAR OFERTAS DE HABITACION(HECHA POR NICOLAS MODIFICADA POR JPINZON18)
 def createOferta():
     con7=connect("C:\PINZON\sqlite-tools-win32-x86-3400100\DB\Hotel.db")
-    cursorcreateOferta=con.cursor()
+    cursorcreateOferta=con7.cursor()
     numero_habitacion=int(input("Ingrese el numero de la habitacion a agregar: "))
     tipo_habitacion=input("Ingrese el tipo de la habitacion a agregar: ")
     precio_habitacion=int(input("Ingrese el precio de la habitacion a agregar: "))
@@ -210,4 +210,16 @@ def updateOferta():
             case _:
                 print("Escoja un numero valido")
         interfaz("pause")
+
+#FUNCION PARA ElIMINAR LAS HABITACIONES(HECHA POR NICOLAS MODIFICADA POR JPINZON18)
+def deleteOferta():
+    con11=connect("C:\PINZON\sqlite-tools-win32-x86-3400100\DB\Hotel.db")
+    cursordeleteOferta=con11.cursor()
+    numero=int(input("Ingrese el numero de la habitacion que quiera eliminar: "))
+    tipo=input("Ingrese el tipo de habitacion seleccionada: ")
+    precio=int(input("Ingrese el precio de la habitacion seleccionada: "))
+    estado=input("Ingrese el estado de la habitacion seleccionada: ")
+    cursordeleteOferta.execute("delete from Habitacion where Num_habitacion =? and Tipo_habitacion=? and Precio_habitacion=? and Estado_habitacion=?",(numero,tipo,precio,estado))
+    con11.commit()
+    con11.close()
 
