@@ -20,8 +20,11 @@ def create():
     Habit=CH.Habitacion(numero_habitacion,tipo_habitacion,precio_habitacion,estado_habitacion)
     create=(Habit.getNum(),Habit.getTipo(),Habit.getPrecio(),Habit.getEstado())
     micursorcreate.execute("insert into Habitacion values(?,?,?,?)", create)
+    #micursorcreate.execute("update Habitacion set (Tipo_habitacion, Precio_habitacion, Estado_habitacion = (?,?,?) where Num_habitacion=12",tipo_habitacion,precio_habitacion,estado_habitacion)
     con.commit()
     con.close()
+
+
 
 def update():
     while True:
