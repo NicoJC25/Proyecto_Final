@@ -1,26 +1,26 @@
 #Juan Esteban
 
 class Mesero:
-    def __init__(self,Num_doc,Tipo_doc,Nombres,Apellidos,Email,Contraseña,Funciones):
-        self.__Num_doc=Num_doc
-        self.__Tipo_doc=Tipo_doc
+    def __init__(self,Num_documento,Tipo_documento,Nombres,Apellidos,Email,Contraseña,Funciones):
+        self.__Num_documento=Num_documento
+        self.__Tipo_documento=Tipo_documento
         self.__Nombres=Nombres
         self.__Apellidos=Apellidos
         self.__Email=Email
         self.__Contraseña=Contraseña
         self.__Funciones=Funciones
 
-    def getNum_doc(self):
-          return self.__Num_doc
+    def getNum_documento(self):
+          return self.__Num_documento
 
-    def setNum_doc(self,Num_doc):
-          self.__Num_doc=Num_doc   
+    def setNum_documento(self,Num_documento):
+          self.__Num_documento=Num_documento   
 
-    def getTipo_doc(self):
-          return self.__Tipo_doc
+    def getTipo_documento(self):
+          return self.__Tipo_documento
 
-    def setTipo_doc(self,Tipo_doc):
-          self.__Tipo_doc=Tipo_doc    
+    def setTipo_documento(self,Tipo_documento):
+          self.__Tipo_documento=Tipo_documento    
 
     def getNombres(self):
           return self.__Nombres
