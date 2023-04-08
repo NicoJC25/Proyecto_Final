@@ -20,7 +20,6 @@ def create():
     Habit=CH.Habitacion(numero_habitacion,tipo_habitacion,precio_habitacion,estado_habitacion)
     create=(Habit.getNum(),Habit.getTipo(),Habit.getPrecio(),Habit.getEstado())
     micursorcreate.execute("insert into Habitacion values(?,?,?,?)", create)
-    #micursorcreate.execute("update Habitacion set (Tipo_habitacion, Precio_habitacion, Estado_habitacion = (?,?,?) where Num_habitacion=12",tipo_habitacion,precio_habitacion,estado_habitacion)
     con.commit()
     con.close()
 
@@ -31,28 +30,36 @@ def update():
         interfaz("cls")
         con=connect("C:\\Juez\\sqlite-tools\\db\\Hotel.db")
         micursorupdate=con.cursor()
-        print("¿Cual es la columna que desea actualizar? \nOprima 1 para editar el tipo de habitacion \nOprima 2 para editar el precio de habitacion \nOprima 3 para editar el estado de habitacion \nOprima 4 para salir de este apartado ")
+        print("¿Cual es la columna que desea actualizar? \nOprima 1 para editar una columna entera \nOprima 2 para editar el tipo de habitacion \nOprima 3 para editar el precio de habitacion \nOprima 4 para editar el estado de habitacion \nOprima 5 para salir de este apartado ")
         pedir=(int(input(' ')))
         match pedir:
             case 1:
+                tipo_habitacion=input("Ingrese el tipo de la habitacion a cambiar: ")
+                precio_habitacion=int(input("Ingrese el precio de la habitacion a cambiar: "))
+                estado_habitacion=input("Ingrese el estado de la habitacion a cambiar: ")
+                ubicacion=int(input("Ahora ingrese el id de habitacion de la cual va a cambiar estos datos: "))
+                micursorupdate.execute("update Habitacion set (Tipo_habitacion, Precio_habitacion, Estado_habitacion) = (?,?,?) where Num_habitacion=?",(tipo_habitacion,precio_habitacion,estado_habitacion,ubicacion))
+                con.commit()
+                con.close()
+            case 2:
                 tipo_habitacion=input("Ingrese el tipo de habitacion por el cual va a reemplazar el actual: ")
                 ubicacion=int(input("Ahora ingrese el id de habitacion de la cual va a cambiar el tipo de habitacion: "))
                 micursorupdate.execute("update Habitacion set Tipo_habitacion =? where Num_habitacion =?",(tipo_habitacion,ubicacion))
                 con.commit()
                 con.close()
-            case 2:
+            case 3:
                 precio_habitacion=int(input("Ingrese el precio de habitacion por el cual va a reemplazar el actual: "))
                 ubicacion=int(input("Ahora ingrese el id de habitacion de la cual va a cambiar el tipo de habitacion: "))
                 micursorupdate.execute("update Habitacion set Precio_habitacion =? where Num_habitacion =?",(precio_habitacion,ubicacion))
                 con.commit()
                 con.close()
-            case 3:
+            case 4:
                 estado_habitacion=input("Ingrese el estado de habitacion por el cual va a reemplazar el actual: ")
                 ubicacion=int(input("Ahora ingrese el id de habitacion de la cual va a cambiar el tipo de habitacion: "))
                 micursorupdate.execute("update Habitacion set Estado_habitacion =? where Num_habitacion =?",(estado_habitacion,ubicacion))
                 con.commit()
                 con.close()
-            case 4:
+            case 5:
                 break
             case _:
                 print("Escoja un numero valido")
@@ -77,7 +84,7 @@ def delete():
     con=connect("C:\\Juez\\sqlite-tools\\db\\Hotel.db")
     micursordelete=con.cursor()
     numero=int(input("Ingrese el numero de la habitacion que quiera eliminar: "))
-    tipo=input("Ingrese el tipo de habitacion seleccionada: ")
+    tipo=input("Ingrese el tipo de la habitacion seleccionada: ")
     precio=int(input("Ingrese el precio de la habitacion seleccionada: "))
     estado=input("Ingrese el estado de la habitacion seleccionada: ")
     micursordelete.execute("delete from Habitacion where Num_habitacion =? and Tipo_habitacion=? and Precio_habitacion=? and Estado_habitacion=?",(numero,tipo,precio,estado))
