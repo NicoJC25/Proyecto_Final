@@ -1,13 +1,14 @@
 """from Cliente import *"""
 """from Habitacion import *"""
 class Reserva:
-    def __init__(self, id_reserva, num_doc, num_habitacion, precio_reserva, fecha_entrada, fecha_salida, metodos_pago):
+    def __init__(self, id_reserva, num_doc, num_habitacion, fecha_entrada, fecha_salida, costo_servicios, precio_reserva, metodos_pago):
         self.__id_reserva=id_reserva
         self.__num_doc=num_doc   #Llave foranea, recordar que hay que importar del otro modulo
         self.__num_habitacion=num_habitacion
-        self.precio_reserva=precio_reserva
         self.fecha_entrada=fecha_entrada
         self.fecha_salida=fecha_salida
+        self.costo_servicios=costo_servicios
+        self.precio_reserva=precio_reserva
         self.metodos_pago=metodos_pago
     
     def getId(self):
@@ -27,12 +28,6 @@ class Reserva:
     
     def setNum_hab(self, num_habitacion):
         self.__num_habitacion=num_habitacion
-        
-    def getPrecio(self):
-        return self.precio_reserva
-    
-    def setPrecio(self, precio_reserva):
-        self.precio_reserva=precio_reserva
     
     def getFecha_e(self):
         return self.fecha_entrada
@@ -46,6 +41,18 @@ class Reserva:
     def setFecha_s(self, fecha_salida):
         self.fecha_salida=fecha_salida
         
+    def getCosto_s(self):
+        return self.costo_servicios
+    
+    def setCosto_s(self,costo_servicios):
+        self.costo_servicios=costo_servicios
+
+    def getPrecio(self):
+        return self.precio_reserva
+    
+    def setPrecio(self, precio_reserva):
+        self.precio_reserva=precio_reserva
+
     def getMetodo(self):
         return self.metodos_pago
     
