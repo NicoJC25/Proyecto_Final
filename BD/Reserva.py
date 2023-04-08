@@ -1,3 +1,5 @@
+#Nicolas Juez
+
 from sqlite3 import *
 from sys import path as ruta
 from os import system as interfaz
@@ -148,6 +150,6 @@ def delete():
     costo_servicios=int(input("Ingrese el costo total de los servicios de la reserva seleccionada: "))
     precio_reserva=int(input("Ingrese el precio total de la reserva seleccionada: "))
     metodo_pago=input("Ingrese el metodo de pago de la reserva seleccionada: ")
-    micursordelete.execute("delete from reserva where ID_Reserva =? and Num_Doc=? and Num_habitacion=? and Fecha_Entrada=? and Fecha_Salida=? and Costo_servicios=? and Precio_Reserva=? and Metodos_Pago=?",(id_reserva,numero_documento,numero_habitacion,fecha_entrada,fecha_salida,costo_servicios,precio_reserva,metodo_pago))
+    micursordelete.execute("delete from Reserva where ID_Reserva =? and Num_Doc=? and Num_habitacion=? and Fecha_Entrada=? and Fecha_Salida=? and Costo_servicios=? and Precio_Reserva=? and Metodos_Pago=?",(id_reserva,numero_documento,numero_habitacion,fecha_entrada,fecha_salida,costo_servicios,precio_reserva,metodo_pago))
     con.commit()
     con.close()

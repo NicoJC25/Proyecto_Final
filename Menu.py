@@ -4,7 +4,7 @@ import BD.Habitacion as BDh
 try:
     while True:
         interfaz("cls")
-        print("Bienvenido al menu \nPresione 1 para editar los datos de las habitaciones")
+        print("Bienvenido al menu \nPresione 1 para editar los datos de las habitaciones \nPresione 2 para ")
         pedir=int(input(' '))
         match pedir:
             case 1:
