@@ -28,60 +28,59 @@ def create():
     Email = str(input("ingrese su email:"))
     Contraseña = str(input("ingrese su contraseña:"))
     Funciones = str(input("ingrese su funcion:"))
-    if(len(Num_Documento)> 0 and len(Tipo_Documento) > 0 , len(Nombres) > 0 and len(Apellidos)>0 ,len(ema
-    )>0 or len(Contraseña) and len(Funciones)>0):
+    if(len(Num_Documento)> 0 and len(Tipo_Documento) > 0 , len(Nombres) > 0 and len(Apellidos)>0 ,len(Email)>0 or len(Contraseña) and len(Funciones)>0):
         sql=("INSERT INTO recepcionista(Num_Documento,Tipo_Documento,Nombres,Apellido,Email,Contraseña,Funciones)VAlUES(?,?)")
         parametros=(Num_Documento,Tipo_Documento,Nombres,Apellidos,Email,Contraseña,Funciones)
         db.ejecutar_consulta(sql,parametros)
         print("insertados...")
-    def read():
-        result=db.ejecutar_consulta("SELCT * FROM Recepcionista")
-        for data in result:
-            print("""
-            Num_Documento:{}
-            Tipo_Documento:{}
-            Nombre:{}
-            Apellido:{}
-            Email:{}
-            Contraseña:{}
-            Funciones:{} """.format(data[0],data[1],data[2]))
+def read():
+    result=db.ejecutar_consulta("SELCT * FROM Recepcionista")
+    for data in result:
+        print("""
+        Num_Documento:{}
+        Tipo_Documento:{}
+        Nombre:{}
+        Apellido:{}
+        Email:{}
+        Contraseña:{}
+        Funciones:{} """.format(data[0],data[1],data[2]))
 
-    def update():
-        Num_Documento=int(input("Ingrese el numero de documento"))
-        Tipo_Documento=int(input("Ingrese el tipo de documento"))
-        Nombre=int(input("Ingrese su nombre"))
-        Apellido=int(input("Ingrese su apellido"))
-        Email=int(input("Ingrese el email"))
-        Contraseña=int(input("Ingrese su contraseña"))
-        Funciones=int(input("Ingrese su funcion"))
-        if(Num_Documento != 0):
-            sql="UPDATE Recepcionista SET Tipo_Documento=?,Nombres=?,Apellido=?,Email=?,Contraseña=?,Funciones=? WHERE Num_Documento=?"
-            parametros=(Num_Documento,Tipo_Documento,Nombres,Apellidos,Email,Contraseña,Funciones)
-            db.ejecutar_consulta(sql,parametros)
-            print("Actualizados!")
+def update():
+    Num_Documento=int(input("Ingrese el numero de documento"))
+    Tipo_Documento=int(input("Ingrese el tipo de documento"))
+    Nombre=int(input("Ingrese su nombre"))
+    Apellido=int(input("Ingrese su apellido"))
+    Email=int(input("Ingrese el email"))
+    Contraseña=int(input("Ingrese su contraseña"))
+    Funciones=int(input("Ingrese su funcion"))
+    if(Num_Documento != 0):
+        sql="UPDATE Recepcionista SET Tipo_Documento=?,Nombres=?,Apellido=?,Email=?,Contraseña=?,Funciones=? WHERE Num_Documento=?"
+        parametros=(Num_Documento,Tipo_Documento,Nombre,Apellido,Email,Contraseña,Funciones)
+        db.ejecutar_consulta(sql,parametros)
+        print("Actualizados!")
     
-    def delete():
-        id= int(input("ingrese el Num_Documento:"))
-        if (Num_Documento != 0):
-            sql="DELETE FROM Recepcionista WHERE Num_Documento=?"
-            parametros=(Num_Documento,)
-            db.ejecutar_consulta(sql,parametros)
-            print("Eleminados!")
+def delete():
+    id= int(input("ingrese el Num_Documento:"))
+    if (id != 0):
+        sql="DELETE FROM Recepcionista WHERE Num_Documento=?"
+        parametros=(id,)
+        db.ejecutar_consulta(sql,parametros)
+        print("Eleminados!")
     
-    def search():
-        Nombres=str(input("ingrese su nombre:"))
-        if (len(Nombres)>0):
-            sql="SELECT * FROM  Recepcionista WHERE Nombres LIKE ?:"
-            parametros=("%%".format(Nombres),)
-            result=db.ejecutar_consulta(sql,parametros)
-            print("""
-            +Num_Documento:{}
-            Tipo_Documento:{}
-            Nombre:{}
-            Apellido:{}
-            Email:{}
-            Contraseña:{}
-            Funciones:{}""".format(data[0],data[1],data[2]))
+def search():
+    Nombres=str(input("ingrese su nombre:"))
+    if (len(Nombres)>0):
+        sql="SELECT * FROM  Recepcionista WHERE Nombres LIKE ?:"
+        parametros=("%%".format(Nombres),)
+        result=db.ejecutar_consulta(sql,parametros)
+        print("""
+        +Num_Documento:{}
+        Tipo_Documento:{}
+        Nombre:{}
+        Apellido:{}
+        Email:{}
+        Contraseña:{}
+        Funciones:{}""".format(data[0],data[1],data[2]))
 
 while True:
     print("==============================")
