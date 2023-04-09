@@ -1,10 +1,13 @@
 #Juan Esteban
 
+#AVISO: Para el funcionamiento correcto del codigo, cambiar la ruta de las conexiones con la base de datos de acuerdo a donde...
+#.. se este ejecutando el archivo.
+
 from sqlite3 import *
 from sys import path as ruta
 from os import system as interfaz
 
-ruta.append("C:\PINZON\Proyecto_Final")
+ruta.append("C:\\Juez\\Proyecto_Final")
 import Clases.Administrador as CA
 import Clases.Mesero as CM
 import Clases.Recepcionista as CR
@@ -62,8 +65,6 @@ def registerRecepcionista():
     con3.commit()
     con3.close()
 
-#NOTA PARA NICOLAS. EN EL MENU DEBE PREGUNTAR PRIMERO DE CUAL TABLA DESEA ELIMINAR EMPLEADO OSEA DE RECEPCIONISTA DE ADMIN O DE MESEROS EN CUYO CASO
-#RECUERDE QUE CADA FUNCION ES INDEPENDIENTE A CADA TABLA 
 
 #FUNCION PARA BORRAR ADMINISTRADOR
 def deleteAdmin():

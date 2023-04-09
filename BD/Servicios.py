@@ -2,6 +2,9 @@
 #ATENCION: Este archivo no tendra funcion si en la base de datos la llave foranea entee servicios y reserva esta activa ya que...
 #... genera un error desconocido. Para su funcionamiento hay que desactivar esta llave foranea manualmente.
 
+#AVISO: Para el funcionamiento correcto del codigo, cambiar la ruta de las conexiones con la base de datos de acuerdo a donde...
+#.. se este ejecutando el archivo.
+
 from sqlite3 import *
 from sys import path as ruta
 from os import system as interfaz
