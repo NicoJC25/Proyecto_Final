@@ -1,0 +1,9 @@
+ID de la reserva: 10
+Numero de documento del cliente: 51457
+Numero de habitacion reservada: 5
+Fecha de inicio de la reserva: 2023-02-29
+Fecha de finalizacion de la reserva: 2023-03-29
+Costo total de los servicios: 66899
+Precio total de la reserva: 366899
+Metodo de pago para la reserva: Efectivo
+**************************************************
