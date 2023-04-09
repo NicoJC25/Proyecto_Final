@@ -111,4 +111,3 @@ def delete():
     micursordelete.execute("delete from Mesero where Num_documento =? and Tipo_Documento=? and Nombres=? and Apellidos=? and Email=? and Contraseña=? and Funciones=?",(numero_documento,tipo_documento,nombre,apellido,email,contraseña,funciones))
     con.commit()
     con.close()
-
