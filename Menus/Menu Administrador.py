@@ -1,13 +1,18 @@
+#ATENCION: Cambiar la ruta de importacion del modulo de base de datos para su correcto funcionamiento.
+#En este menu tambien van incluidas las opciones para CRUD del recepcionista pero la responsable de este apartado (Kerly Nieto)...
+#... realizo un menu propio en su archivo.
+
 from os import system as interfaz
 from sys import path as ruta
 ruta.append("C:\\Juez\\Proyecto_Final")
 import BD.Habitacion as BDh
 import BD.Mesero as BDm
+import BD.Administrador as BDa
 
 try:
     while True:
         interfaz("cls")
-        print("Bienvenido al menu \nPresione 1 para editar los datos de las habitaciones \nPresione 2 para editar los datos del mesero \nPresione 3 para finalizar el programa")
+        print("Bienvenido al menu \nPresione 1 para editar los datos de las habitaciones \nPresione 2 para editar los datos del mesero \nPresione 3 si desea editar los datos de administrador \nPresione 4 para finalizar el programa")
         pedir=int(input(''))
         match pedir:
             case 1:
@@ -31,8 +36,8 @@ try:
             case 2:
                 while True:
                     interfaz ("cls")
-                    opcion=int(input("Oprima 1 si desea agregar un nuevo mesero \nOprima 2 si desea actualizar los datos de un mesero ya agregado \nOprima 3 si desea consultar los datos de la tabla completa \nOprima 4 si desea remover un mesero de la tabla \nOpimra 5 si desea volver al menu principal \n"))
-                    match opcion:
+                    opcionM=int(input("Oprima 1 si desea agregar un nuevo mesero \nOprima 2 si desea actualizar los datos de un mesero ya agregado \nOprima 3 si desea consultar los datos de la tabla completa \nOprima 4 si desea remover un mesero de la tabla \nOpimra 5 si desea volver al menu principal \n"))
+                    match opcionM:
                         case 1:
                             BDm.create()
                         case 2:
@@ -47,6 +52,17 @@ try:
                             print("El numero no es valido")
                     interfaz ("pause")
             case 3:
+                while True:
+                    interfaz ("cls")
+                    opcionA=int(input("Oprima 1 si desea agregar un nuevo administrador \nOprima 2 si desea remover un administrador de la tabla \nOprima 3 si desea volver al menu principal \n"))
+                    match opcionA:
+                        case 1:
+                            BDa.register()
+                        case 2:
+                            BDa.deleteAdmin()
+                        case 3:
+                            break
+            case 4:
                 break
             case _:
                 print('El numero no es valido')

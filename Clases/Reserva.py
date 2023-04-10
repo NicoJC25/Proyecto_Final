@@ -1,5 +1,6 @@
-"""from Cliente import *"""
-"""from Habitacion import *"""
+#Nicolas Juez
+
+
 class Reserva:
     def __init__(self, id_reserva, num_doc, num_habitacion, fecha_entrada, fecha_salida, costo_servicios, precio_reserva, metodos_pago):
         self.__id_reserva=id_reserva

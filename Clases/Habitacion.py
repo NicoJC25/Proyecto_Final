@@ -1,3 +1,5 @@
+#Nicolas Juez
+
 class Habitacion:
     def __init__(self, num_habitacion, tipo_habitacion, precio_habitacion, estado_habitacion):
         self.__num_habitacion=num_habitacion

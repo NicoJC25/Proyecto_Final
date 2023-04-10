@@ -1,0 +1,5 @@
+Numero de la habitacion: 13
+Tipo de habitacion: Sencilla
+Precio de la habitacion: 200000
+Estado de la habitacion: Ocupada
+**************************************************

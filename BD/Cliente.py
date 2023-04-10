@@ -1,12 +1,15 @@
+#AVISO: Para el funcionamiento correcto del codigo, cambiar la ruta de las conexiones con la base de datos de acuerdo a donde...
+#.. se este ejecutando el archivo. Ademas de cambiar la ruta de importacion del archivo de clases correspondiente.
+
 from sqlite3 import *
 from sys import path as ruta
 from os import system as interfaz
 
-ruta.append("C:\\jhonpadi\\Proyecto_Final")
+ruta.append("C:\\Juez\\Proyecto_Final")
 import Clases.Cliente as CL
 
 def agregarcliente():                                                                                                       #create
-    conA=connect('C:\\buitrago\\Hotel (1).db')
+    conA=connect("C:\\Juez\\sqlite-tools\\db\\Hotel.db")
     curs=conA.cursor()
     Num_Doc=int(input("Ingrese el numero de documento: "))
     Tipo_Doc=input("Ingrese el tipo de documento: ")
@@ -14,11 +17,21 @@ def agregarcliente():                                                           
     Apellidos=input("Ingrese apellido: ")
     Correo=input("Ingrese correo: ")
     Contraseña=input("Ingrese contraseña: ")
-    cli=CL.Cliente(Num_Doc,Tipo_Doc,Nombres,Apellidos,Correo,Contraseña)
+    cli=CL.cliente(Num_Doc,Tipo_Doc,Nombres,Apellidos,Correo,Contraseña)
     create1=(cli.getNum_doc(),cli.getTipo_doc(),cli.getNombres(),cli.getApellidos(),cli.getCorreo(),cli.getContraseña())
     curs.execute('insert into Cliente values(?,?,?,?,?,?)',create1)
     conA.commit()
-    conA.close() 
+    conA.close()
+    
+    with open("C:\\Juez\\Proyecto_Final\\Reportes\\Reporte_cliente.txt","a") as flujo:
+        flujo.write("Numero de documento: " + str(cli.getNum_doc()) + 
+                    "\nTipo de documento: " + cli.getTipo_doc() + 
+                    "\nNombre: " + cli.getNombres() + 
+                    "\nApellido: " + cli.getApellidos() + 
+                    "\nCorreo: " + cli.getCorreo() + 
+                    "\nContraseña: " + cli.getContraseña() + 
+                    "\n" + "*"*50 + 
+                    "\n")
 
 
 def verdatos():                                                                                                             #read

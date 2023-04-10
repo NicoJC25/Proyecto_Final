@@ -1,4 +1,4 @@
-#Juan Esteban
+#Juan Pinzon
 
 class Mesero:
     def __init__(self,Num_documento,Tipo_documento,Nombres,Apellidos,Email,Contraseña,Funciones):

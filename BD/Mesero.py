@@ -1,7 +1,7 @@
 #Juan Esteban y Nicolas Juez
 
 #AVISO: Para el funcionamiento correcto del codigo, cambiar la ruta de las conexiones con la base de datos de acuerdo a donde...
-#.. se este ejecutando el archivo.
+#.. se este ejecutando el archivo. Ademas de cambiar la ruta de importacion del archivo de clases correspondiente.
 
 from sqlite3 import *
 from sys import path as ruta
@@ -14,7 +14,7 @@ def create():
     con=connect("C:\\Juez\\sqlite-tools\\db\\Hotel.db")
     micursorcreate=con.cursor()
     numero_documento=int(input("Ingrese el numero de documento a agregar: "))
-    tipo_documento=int(input("Ingrese el tipo de documento a agregar: "))
+    tipo_documento=input("Ingrese el tipo de documento a agregar: ")
     nombre=input("Ingrese el nombre del mesero :")
     apellido=input("Ingrese el apellido del mesero: ")
     email=input("Ingrese el correo electronico del mesero: ")
@@ -25,6 +25,18 @@ def create():
     micursorcreate.execute("insert into Mesero values (?,?,?,?,?,?,?)",(create))
     con.commit()
     con.close()
+    
+    with open("C:\\Juez\\Proyecto_Final\\Reportes\\Reporte_mesero.txt","a") as flujo:
+        flujo.write("Numero de documento: " + str(Mesero.getNum_documento()) +
+                    "\nTipo de documento: " + Mesero.getTipo_documento() +
+                    "\nNombre: " + Mesero.getNombres() + 
+                    "\nApellido: " + Mesero.getApellidos() + 
+                    "\nEmail: " + Mesero.getEmail() + 
+                    "\nContraseña: " + Mesero.getContraseña() + 
+                    "\nFunciones:" + Mesero.getFunciones() + 
+                    "\n" + "*"*50 + 
+                    "\n")
+
 
 def update():
     while True:
@@ -53,7 +65,7 @@ def update():
                 con.commit()
                 con.close()
             case 3:
-                tipo_documento=int(input("Ingrese el tipo de documento nuevo: "))
+                tipo_documento=input("Ingrese el tipo de documento nuevo: ")
                 ubicacion=int(input("Ingrese el numero de documento del mesero al que le va a realizar el cambio: "))
                 micursorupdate.execute("update Mesero set Tipo_documento = ? where Num_documento =?",(tipo_documento,ubicacion))
             case 4:

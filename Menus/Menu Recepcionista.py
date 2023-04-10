@@ -1,3 +1,5 @@
+#ATENCION: Cambiar la ruta de importacion del modulo de base de datos para su correcto funcionamiento.
+
 from os import system as interfaz
 from sys import path as ruta
 ruta.append("C:\\Juez\\Proyecto_Final")

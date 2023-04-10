@@ -1,3 +1,5 @@
+#Jhon Buitrago
+
 class cliente:
     def __init__(self,Num_doc,Tipo_doc,Nombres,Apellidos,Correo,Contraseña):
         self.__Num_doc=Num_doc

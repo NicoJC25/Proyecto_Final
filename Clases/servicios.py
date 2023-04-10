@@ -1,4 +1,4 @@
-#Juan Esteban
+#Juan Pinzon
 
 class Servicios:
     def __init__(self,Num_doc,Lavanderia,Piscina,Zona_recre,Apar_dome,Minibar,Restaurante,Servicio_habi,Alquiler_carro,Precio):

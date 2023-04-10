@@ -1,0 +1,8 @@
+Numero de documento: 78784539
+Tipo de documento: C.C
+Nombre: Nicolas
+Apellido: Juez
+Email: jkwekjs@gmail.com
+Contraseña: jwedjksjk
+Funciones:Agregar_servicio
+**************************************************

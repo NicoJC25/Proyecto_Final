@@ -1,7 +1,7 @@
 #Juan Esteban
 
 #AVISO: Para el funcionamiento correcto del codigo, cambiar la ruta de las conexiones con la base de datos de acuerdo a donde...
-#.. se este ejecutando el archivo.
+#.. se este ejecutando el archivo. Ademas de cambiar la ruta de importacion del archivo de clases correspondiente.
 
 from sqlite3 import *
 from sys import path as ruta
@@ -14,7 +14,7 @@ import Clases.Recepcionista as CR
 
 #FUNCION PARA AGREGAR UN NUEVO ADMINISTRADOR
 def register():
-    con1=connect("C:\PINZON\sqlite-tools-win32-x86-3400100\DB\Hotel.db")
+    con1=connect("C:\\Juez\\sqlite-tools\\db\\Hotel.db")
     cursorregister=con1.cursor()
     Numero_Documento=int(input("ingrese el numero de documento del nuevo administrador: "))
     Tipo_Documento=input("ingrese el tipo del documento: ")
@@ -28,6 +28,17 @@ def register():
     cursorregister.execute("insert into Administrador values(?,?,?,?,?,?,?)", register)
     con1.commit()
     con1.close()
+    
+    with open("C:\\Juez\\Proyecto_Final\\Reportes\\Reporte_administrador.txt","a") as flujo:
+        flujo.write("Numero de documento: " + str(Reg.getNum_documento()) +
+                    "\nTipo de documento: " + Reg.getTipo_documento() +
+                    "\nNombre :" + Reg.getNombres() + 
+                    "\nApellido: " + Reg.getApellidos() + 
+                    "\nEmail: " + Reg.getEmail() + 
+                    "\nContraseña: " + Reg.getContraseña() +
+                    "\nFunciones: " + Reg.getFunciones() +
+                    "\n" + "*"*50 + 
+                    "\n")
 
 #FUNCION PARA AGREGAR UN NUEVO MESERO    
 def registermesero():

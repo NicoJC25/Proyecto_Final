@@ -1,7 +1,7 @@
 #Nicolas Juez
 
 #AVISO: Para el funcionamiento correcto del codigo, cambiar la ruta de las conexiones con la base de datos de acuerdo a donde...
-#.. se este ejecutando el archivo.
+#.. se este ejecutando el archivo. Ademas de cambiar la ruta de importacion del archivo de clases correspondiente.
 
 from sqlite3 import *
 from sys import path as ruta
@@ -51,7 +51,7 @@ def create():
     print("Reserva creada con exito :D")
     con.close()
     
-    with open("C:\\Juez\\Proyecto_Final\\Reportes.txt","a") as flujo:
+    with open("C:\\Juez\\Proyecto_Final\\Reportes\\Reporte_reserva.txt","a") as flujo:
         flujo.write("ID de la reserva: " + str(Reserva.getId()) + 
                     "\nNumero de documento del cliente: " + str(Reserva.getNum_doc()) + 
                     "\nNumero de habitacion reservada: " + str(Reserva.getNum_hab()) +

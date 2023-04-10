@@ -1,6 +1,6 @@
 #Nicolas Juez
 #AVISO: Para el funcionamiento correcto del codigo, cambiar la ruta de las conexiones con la base de datos de acuerdo a donde...
-#.. se este ejecutando el archivo.
+#.. se este ejecutando el archivo. Ademas de cambiar la ruta de importacion del archivo de clases correspondiente.
 
 from sqlite3 import *
 from sys import path as ruta
@@ -26,6 +26,14 @@ def create():
     micursorcreate.execute("insert into Habitacion values(?,?,?,?)", create)
     con.commit()
     con.close()
+    
+    with open("C:\\Juez\\Proyecto_Final\\Reportes\\Reporte_habitacion.txt","a") as flujo:
+        flujo.write("Numero de la habitacion: " + str(Habit.getNum()) + 
+                    "\nTipo de habitacion: " + Habit.getTipo() + 
+                    "\nPrecio de la habitacion: " + str(Habit.getPrecio()) + 
+                    "\nEstado de la habitacion: " + Habit.getEstado() + 
+                    "\n" + "*"*50 + 
+                    "\n")
 
 
 

@@ -1,0 +1,11 @@
+Numero de documento: 12345
+Lavanderia: 12000
+Piscina: 0
+Zona Recreativa: 0
+Aparatos domesticos: 0
+Minibar: 20000
+Restaurante: 0
+Servicio de habitacion: 12000
+Alquiler de carros: 0
+Costo total: 66044
+**************************************************

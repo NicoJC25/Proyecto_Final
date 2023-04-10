@@ -1,0 +1,8 @@
+Numero de documento: 204956
+Tipo de documento: C.C
+Nombre :Jhon
+Apellido: Buitrago
+Email: jwesdkl@gmail.com
+Contraseña: iujewfjksakj
+Funciones: Agregar_Empleado
+**************************************************

@@ -1,0 +1,11 @@
+-En la carpeta de Clases se encuentran todas las clases hechas para cada tabla de la base de datos
+-En la carpeta de BD se encuentran todos los CRUD de las tablas, utilizando las clases para crear los datos
+-En los create de cada archivo en la base de datos se encuentran las funciones para generar los reportes
+-En la carpeta de Reportes esta cada archivo correspondiente a su reporte
+-En la carpeta Menus se encuentran todos los menus que importan las funciones del CRUD. Cada menu tiene ciertas funciones. . .
+. . . Dependiendo de que hace cada rol
+-En el menu de recepcionista se realiza el primer requerimiento: Generar reservas
+-Recomendable leer los comentarios al principio de cada archivo ya que trae recomendaciones adjuntas
+-Ejecutar las funciones mediante los menus
+
+-Muchas gracias :D

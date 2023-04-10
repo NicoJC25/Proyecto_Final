@@ -3,7 +3,7 @@
 #... genera un error desconocido. Para su funcionamiento hay que desactivar esta llave foranea manualmente.
 
 #AVISO: Para el funcionamiento correcto del codigo, cambiar la ruta de las conexiones con la base de datos de acuerdo a donde...
-#.. se este ejecutando el archivo.
+#.. se este ejecutando el archivo. Ademas de cambiar la ruta de importacion del archivo de clases correspondiente.
 
 from sqlite3 import *
 from sys import path as ruta
@@ -27,11 +27,10 @@ def create():
     servicio_habitacion=int(input("Ingrese precio si el cliente hizo uso de servicio de habitacion adicional: "))
     alquiler_carros=int(input("Ingrese precio si el cliente hizo uso del alquiler de carros: "))
     ubicacion=numero_documento
-    micursorcreate.execute("select * from Servicios where Num_Doc=?",ubicacion)
     create=(numero_documento,lavanderia,piscina,zona_recreativa,aparatos_domesticos,minibar,restaurante,servicio_habitacion,alquiler_carros)
-    micursorcreate.execute("inserto into Servicios (Num_Doc,Lavanderia,Piscina,Zona_recreativa,Aparatos_domesticos,Minibar,Restaurante,Servicio_habitacion,Alquiler_carros) values (?,?,?,?,?,?,?,?,?)",(create))
+    micursorcreate.execute("insert into Servicios (Num_Doc,Lavanderia,Piscina,Zona_recreativa,Aparatos_domesticos,Minibar,Restaurante,Servicio_habitacion,Alquiler_carros) values (?,?,?,?,?,?,?,?,?)",(numero_documento,lavanderia,piscina,zona_recreativa,aparatos_domesticos,minibar,restaurante,servicio_habitacion,alquiler_carros))
     
-    micursorcreate.execute("select * from Servicios where Num_Doc=?",ubicacion)
+    micursorcreate.execute("select * from Servicios where Num_Doc=?",(ubicacion, ))
     
     datos=micursorcreate.fetchall()[0]
 
@@ -40,13 +39,26 @@ def create():
         costo_total+=datos[i]
     print(costo_total)
 
-    micursorcreate.execute("update Servicios set Costo_total =? where Num_Doc =?",(costo_total,ubicacion))
+    micursorcreate.execute("update Servicios set Costo_servicios =? where Num_Doc =?",(costo_total,ubicacion))
     
     con.commit()
     
     Servicios=CS.Servicios(numero_documento,lavanderia,piscina,zona_recreativa,aparatos_domesticos,minibar,restaurante,servicio_habitacion,alquiler_carros,costo_total)
-    
     con.close()
+    
+    with open("C:\\Juez\\Proyecto_Final\\Reportes\\Reporte_servicios.txt","a") as flujo:
+        flujo.write("Numero de documento: " + str(Servicios.getNumdoc()) + 
+                    "\nLavanderia: " + str(Servicios.getLavanderia()) + 
+                    "\nPiscina: " + str(Servicios.getPiscina()) + 
+                    "\nZona Recreativa: " + str(Servicios.getZonarecre()) + 
+                    "\nAparatos domesticos: " + str(Servicios.getApardome()) + 
+                    "\nMinibar: " + str(Servicios.getMinibar()) + 
+                    "\nRestaurante: " + str(Servicios.getRestaurante()) + 
+                    "\nServicio de habitacion: " + str(Servicios.getServicioHabi()) + 
+                    "\nAlquiler de carros: " + str(Servicios.getAlquilercarro()) + 
+                    "\nCosto total: " + str(Servicios.getPrecio()) + 
+                    "\n" + "*"*50 +
+                    "\n")
 
 
 def update():
@@ -70,7 +82,7 @@ def update():
                 ubicacion=numero_documento
                 update=(numero_documento,lavanderia,piscina,zona_recreativa,aparatos_domesticos,minibar,restaurante,servicio_habitacion,alquiler_carros,ubicacion)
                 micursorupdate.execute("update Servicios set (Num_Doc,Lavanderia,Piscina,Zona_recreativa,Aparatos_domesticos,Minibar,Restaurante,Servicio_habitacion,Alquiler_carros) = (?,?,?,?,?,?,?,?,?) where Num_Doc =?",update)
-                micursorupdate.execute("select * from Servicios where Num_Doc=?",numero_documento)
+                micursorupdate.execute("select * from Servicios where Num_Doc=?",(numero_documento, ))
     
                 datos=micursorupdate.fetchall()[0]
 
@@ -79,20 +91,20 @@ def update():
                     costo_total+=datos[i]
                 print(costo_total)
 
-                micursorupdate.execute("update Servicios set Costo_total =? where Num_Doc =?",(costo_total,numero_documento))
+                micursorupdate.execute("update Servicios set Costo_servicios =? where Num_Doc =?",(costo_total,numero_documento))
                 con.commit()
                 con.close()
             case 2:
                 ubicacion=int(input("Ingrese el numero de documento antiguo: "))
                 numero_documento=int(input("Ingrese el numero de documento nuevo del cliente: "))
-                micursorupdate.execute("update Servicios set (Num_Doc) = (?)",numero_documento,ubicacion)
+                micursorupdate.execute("update Servicios set (Num_Doc) = (?)",(numero_documento,ubicacion))
                 con.commit()
                 con.close()
             case 3:
                 ubicacion=int(input("Ingrese el numero de documento del cliente: "))
                 lavanderia=int(input("Ingrese el precio a actualizar de servicio de lavanderia: "))
-                micursorupdate.execute("update Servicios set (Lavanderia) = (?) where Num_Doc =?",lavanderia,ubicacion)
-                micursorupdate.execute("select * from Servicios where Num_Doc=?",ubicacion)
+                micursorupdate.execute("update Servicios set (Lavanderia) = (?) where Num_Doc =?",(lavanderia,ubicacion))
+                micursorupdate.execute("select * from Servicios where Num_Doc=?",(ubicacion, ))
     
                 datos=micursorupdate.fetchall()[0]
 
@@ -101,14 +113,14 @@ def update():
                     costo_total+=datos[i]
                 print(costo_total)
 
-                micursorupdate.execute("update Servicios set Costo_total =? where Num_Doc =?",(costo_total,ubicacion))
+                micursorupdate.execute("update Servicios set Costo_servicios =? where Num_Doc =?",(costo_total,numero_documento))
                 con.commit()
                 con.close()
             case 4:
                 ubicacion=int(input("Ingrese el numero de documento del cliente: "))
                 piscina=int(input("Ingrese el precio a actualizar de servicio de piscina: "))
-                micursorupdate.execute("update Servicios set (Piscina) = (?)",piscina,ubicacion)
-                micursorupdate.execute("select * from Servicios where Num_Doc=?",ubicacion)
+                micursorupdate.execute("update Servicios set (Piscina) = (?)",(piscina,ubicacion))
+                micursorupdate.execute("select * from Servicios where Num_Doc=?",(ubicacion, ))
                 datos=micursorupdate.fetchall()[0]
 
                 costo_total= 0
@@ -116,14 +128,14 @@ def update():
                     costo_total+=datos[i]
                 print(costo_total)
 
-                micursorupdate.execute("update Servicios set Costo_total =? where Num_Doc =?",(costo_total,ubicacion))
+                micursorupdate.execute("update Servicios set Costo_servicios =? where Num_Doc =?",(costo_total,numero_documento))
                 con.commit()
                 con.close()
             case 5:
                 ubicacion=int(input("Ingrese el numero de documento del cliente: "))
                 zona_recreativa=int(input("Ingrese el precio a actualizar de la zona recreativa: "))
-                micursorupdate.execute("update Servicios set (Zona_recreativa) = (?) where Num_Doc =?",zona_recreativa,ubicacion)
-                micursorupdate.execute("select * from Servicios where Num_Doc=?",ubicacion)
+                micursorupdate.execute("update Servicios set (Zona_recreativa) = (?) where Num_Doc =?",(zona_recreativa,ubicacion))
+                micursorupdate.execute("select * from Servicios where Num_Doc=?",(ubicacion, ))
                 datos=micursorupdate.fetchall()[0]
 
                 costo_total= 0
@@ -131,14 +143,14 @@ def update():
                     costo_total+=datos[i]
                 print(costo_total)
 
-                micursorupdate.execute("update Servicios set Costo_total =? where Num_Doc =?",(costo_total,ubicacion))
+                micursorupdate.execute("update Servicios set Costo_servicios =? where Num_Doc =?",(costo_total,numero_documento))
                 con.commit()
                 con.close()
             case 6:
                 ubicacion=int(input("Ingrese el numero de documento del cliente: "))
                 aparatos_domesticos=int(input("Ingrese el precio a actualizar de aparatos domesticos: "))
-                micursorupdate.execute("update Servicios set (Aparatos_domesticos) = (?) where Num_Doc =?",aparatos_domesticos,ubicacion)
-                micursorupdate.execute("select * from Servicios where Num_Doc=?",ubicacion)
+                micursorupdate.execute("update Servicios set (Aparatos_domesticos) = (?) where Num_Doc =?",(aparatos_domesticos,ubicacion))
+                micursorupdate.execute("select * from Servicios where Num_Doc=?",(ubicacion, ))
                 datos=micursorupdate.fetchall()[0]
 
                 costo_total= 0
@@ -146,14 +158,14 @@ def update():
                     costo_total+=datos[i]
                 print(costo_total)
 
-                micursorupdate.execute("update Servicios set Costo_total =? where Num_Doc =?",(costo_total,ubicacion))
+                micursorupdate.execute("update Servicios set Costo_servicios =? where Num_Doc =?",(costo_total,numero_documento))
                 con.commit()
                 con.close()
             case 7:
                 ubicacion=int(input("Ingrese el numero de documento del cliente: "))
                 minibar=int(input("Ingrese precio a actualizar del minibar: "))
                 micursorupdate.execute("update Servicios set (Minibar) = (?) where Num_Doc =?",minibar,ubicacion)
-                micursorupdate.execute("select * from Servicios where Num_Doc=?",ubicacion)
+                micursorupdate.execute("select * from Servicios where Num_Doc=?",(ubicacion, ))
                 datos=micursorupdate.fetchall()[0]
 
                 costo_total= 0
@@ -161,14 +173,14 @@ def update():
                     costo_total+=datos[i]
                 print(costo_total)
 
-                micursorupdate.execute("update Servicios set Costo_total =? where Num_Doc =?",(costo_total,ubicacion))
+                micursorupdate.execute("update Servicios set Costo_servicios =? where Num_Doc =?",(costo_total,numero_documento))
                 con.commit()
                 con.close()
             case 8:
                 ubicacion=int(input("Ingrese el numero de documento del cliente: "))
                 restaurante=int(input("Ingrese precio a actualizar del restaurante: "))
-                micursorupdate.execute("update Servicios set (Restaurante) = (?) where Num_Doc =?",restaurante,ubicacion)
-                micursorupdate.execute("select * from Servicios where Num_Doc=?",ubicacion)
+                micursorupdate.execute("update Servicios set (Restaurante) = (?) where Num_Doc =?",(restaurante,ubicacion))
+                micursorupdate.execute("select * from Servicios where Num_Doc=?",(ubicacion, ))
                 datos=micursorupdate.fetchall()[0]
 
                 costo_total= 0
@@ -176,14 +188,14 @@ def update():
                     costo_total+=datos[i]
                 print(costo_total)
 
-                micursorupdate.execute("update Servicios set Costo_total =? where Num_Doc =?",(costo_total,ubicacion))
+                micursorupdate.execute("update Servicios set Costo_servicios =? where Num_Doc =?",(costo_total,numero_documento))
                 con.commit()
                 con.close()
             case 9:
                 ubicacion=int(input("Ingrese el numero de documento del cliente: "))
                 servicio_habitacion=int(input("Ingrese precio a actualizar de servicio de habitacion adicional: "))
-                micursorupdate.execute("update Servicios set (Servicio_habitacion) = (?) where Num_Doc =?",servicio_habitacion,ubicacion)
-                micursorupdate.execute("select * from Servicios where Num_Doc=?",ubicacion)
+                micursorupdate.execute("update Servicios set (Servicio_habitacion) = (?) where Num_Doc =?",(servicio_habitacion,ubicacion))
+                micursorupdate.execute("select * from Servicios where Num_Doc=?",(ubicacion, ))
                 datos=micursorupdate.fetchall()[0]
 
                 costo_total= 0
@@ -191,14 +203,14 @@ def update():
                     costo_total+=datos[i]
                 print(costo_total)
 
-                micursorupdate.execute("update Servicios set Costo_total =? where Num_Doc =?",(costo_total,ubicacion))
+                micursorupdate.execute("update Servicios set Costo_servicios =? where Num_Doc =?",(costo_total,numero_documento))
                 con.commit()
                 con.close()
             case 10:
                 ubicacion=int(input("Ingrese el numero de documento del cliente: "))
                 alquiler_carros=int(input("Ingrese precio a actualizar del alquiler de carros: "))
-                micursorupdate.execute("update Servicios set (Alquiler_carros) = (? where Num_Doc =?",alquiler_carros,ubicacion)
-                micursorupdate.execute("select * from Servicios where Num_Doc=?",ubicacion)
+                micursorupdate.execute("update Servicios set (Alquiler_carros) = (? where Num_Doc =?",(alquiler_carros,ubicacion))
+                micursorupdate.execute("select * from Servicios where Num_Doc=?",(ubicacion, ))
                 datos=micursorupdate.fetchall()[0]
 
                 costo_total= 0
@@ -206,7 +218,7 @@ def update():
                     costo_total+=datos[i]
                 print(costo_total)
 
-                micursorupdate.execute("update Servicios set Costo_total =? where Num_Doc =?",(costo_total,ubicacion))
+                micursorupdate.execute("update Servicios set Costo_servicios =? where Num_Doc =?",(costo_total,numero_documento))
                 con.commit()
                 con.close()
             case 11:
